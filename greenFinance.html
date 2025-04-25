@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco-Cred: Green Finance & CSR Scheme Finder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 80px 20px 20px; /* Adjusted for fixed header */
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f0f0f0;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Form Styles */
+    #surveyForm {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .question {
+      margin: 20px 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Results Styles */
+    #results {
+      margin-top: 20px;
+    }
+
+    .scheme {
+      background-color: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .scheme h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .scheme a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .scheme a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .social-links {
+      margin-bottom: 10px;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 24px;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #4CAF50;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 600px) {
+      body {
+        padding: 70px 10px 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      select, button {
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .scheme {
+        padding: 10px;
+      }
+
+      /* Header Mobile */
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        padding: 10px 0;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+        position: absolute;
+        right: 60px;
+        top: 15px;
+      }
+
+      /* Footer Mobile */
+      footer {
+        padding: 15px;
+      }
+
+      .social-links a {
+        font-size: 20px;
+        margin: 0 8px;
+      }
+
+      footer p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">Eco-Cred</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
+  </header>
+
+  <h1>🌱 Eco-Cred: Green Finance & CSR Scheme Finder</h1>
+  <form id="surveyForm">
+    <div id="questionsContainer"></div>
+    <button type="submit">Find Matching Schemes</button>
+  </form>
+  <div id="results"></div>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/company/eco-cred/ " target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 Eco-Cred. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle Hamburger Menu
+    document.querySelector('.hamburger').addEventListener('click', () => {
+      document.querySelector('nav').classList.toggle('active');
+    });
+
+    // Questions
+    const questions = [
+      {
+        id: "sector",
+        text: "What industry/sector does your startup operate in?",
+        options: [
+          "Renewable Energy",
+          "EV/Transport",
+          "Waste Management",
+          "Agriculture",
+          "Water Conservation",
+          "Sustainable Fashion",
+          "Clean Technology",
+          "Green Building",
+          "Circular Economy",
+          "Forestry",
+          "Textiles",
+          "Tourism",
+          "Urban Development",
+          "Other"
+        ],
+      },
+      {
+        id: "stage",
+        text: "Business Stage?",
+        options: [
+          "Idea/Concept",
+          "Pre-Seed",
+          "Seed",
+          "Early-Stage (MVP)",
+          "Series A",
+          "Series B",
+          "Scaling/Growth",
+          "Mature"
+        ],
+      },
+      {
+        id: "fundingType",
+        text: "Preferred Financial Support?",
+        options: ["Grant", "Loan", "Subsidy", "Equity", "CSR Initiative", "Land Allocation"],
+      },
+      {
+        id: "location",
+        text: "Business Location (State)?",
+        options: [
+          "Maharashtra",
+          "Gujarat",
+          "Karnataka",
+          "Delhi",
+          "Tamil Nadu",
+          "Andhra Pradesh",
+          "Telangana",
+          "Kerala",
+          "West Bengal",
+          "Rajasthan",
+          "Goa",
+          "Other"
+        ],
+      },
+    ];
+
+    // Schemes Database
+    const schemes = [
+      {
+        name: "MNRE Solar Rooftop Subsidy",
+        provider: "Government of India",
+        sector: ["Renewable Energy"],
+        stage: ["Early-Stage (MVP)", "Scaling/Growth"],
+        fundingType: ["Subsidy"],
+        states: ["All"],
+        link: "https://solarrooftop.gov.in"
+      },
+      {
+        name: "National Solar Mission (NSM)",
+        provider: "MNRE, Govt. of India",
+        sector: ["Renewable Energy"],
+        fundingType: ["Subsidy", "Grant"],
+        link: "https://mnre.gov.in/national-solar-mission"
+      },
+      {
+        name: "Green Energy Corridor (GEC)",
+        provider: "MNRE",
+        sector: ["Renewable Energy"],
+        fundingType: ["Loan", "Grant"],
+        states: ["Rajasthan", "Gujarat", "Tamil Nadu"],
+        link: "https://mnre.gov.in/green-energy-corridor"
+      },
+      {
+        name: "Atal Jyoti Yojana (Solar Street Lights)",
+        provider: "MNRE",
+        sector: ["Renewable Energy", "Urban Development"],
+        fundingType: ["Subsidy"],
+        link: "https://mnre.gov.in/atal-jyoti-yojana"
+      },
+      {
+        name: "National Water Mission Grant",
+        provider: "Government of India",
+        sector: ["Water Conservation"],
+        stage: ["Early-Stage (MVP)", "Scaling/Growth"],
+        fundingType: ["Grant"],
+        states: ["All"],
+        link: "https://nwm.gov.in"
+      },
+      {
+        name: "Clean Technology Innovation Fund",
+        provider: "Government of India",
+        sector: ["Clean Technology"],
+        stage: ["Seed", "Early-Stage (MVP)"],
+        fundingType: ["Grant"],
+        states: ["All"],
+        link: "https://dst.gov.in"
+      },
+      {
+        name: "Green Building Incentive Program",
+        provider: "Ministry of Housing and Urban Affairs",
+        sector: ["Green Building"],
+        stage: ["Scaling/Growth", "Mature"],
+        fundingType: ["Subsidy"],
+        states: ["Maharashtra", "Gujarat", "Karnataka"],
+        link: "https://mohua.gov.in"
+      },
+      {
+        name: "National Biogas Programme",
+        provider: "MNRE",
+        sector: ["Agriculture", "Waste Management"],
+        fundingType: ["Subsidy"],
+        link: "https://mnre.gov.in/biogas"
+      },
+      {
+        name: "Eco-Tex Fund (Sustainable Textiles)",
+        provider: "Ministry of Textiles",
+        sector: ["Textiles"],
+        fundingType: ["Loan", "Grant"],
+        link: "https://ministryoftextiles.gov.in/ecotex"
+      },
+      {
+        name: "National Water Mission Awards",
+        provider: "Ministry of Jal Shakti",
+        sector: ["Water Conservation"],
+        fundingType: ["Grant"],
+        prize: "Up to ₹10 lakh",
+        link: "https://jalvikas.nic.in/water-mission"
+      },
+      {
+        name: "SBI Green Car Loan",
+        provider: "State Bank of India",
+        sector: ["EV/Transport"],
+        fundingType: ["Loan"],
+        interestRate: "7.5%",
+        link: "https://www.sbi.co.in/ev-loans"
+      },
+      {
+        name: "Axis Bank Green Sustainable Loan",
+        provider: "Axis Bank",
+        sector: ["Renewable Energy", "EV/Transport"],
+        interestRate: "8.75% p.a.",
+        fundingType: ["Loan"],
+        link: "https://www.axisbank.com/green-loans"
+      },
+      {
+        name: "IDBI Green Bond Financing",
+        provider: "IDBI Bank",
+        sector: ["Renewable Energy", "Waste Management"],
+        interestRate: "8.9% p.a.",
+        fundingType: ["Loan"],
+        link: "https://www.idbi.com/green-bonds"
+      },
+      {
+        name: "Bank of Maharashtra Eco Project Loan",
+        provider: "Bank of Maharashtra",
+        sector: ["Agriculture", "Renewable Energy"],
+        interestRate: "9% p.a.",
+        fundingType: ["Loan"],
+        link: "https://bankofmaharashtra.in/green-finance"
+      },
+      {
+        name: "Tata Power Solar Rebate Program",
+        provider: "Tata Power",
+        sector: ["Renewable Energy"],
+        fundingType: ["CSR Initiative"],
+        stage: ["Scaling/Growth"],
+        states: ["Maharashtra", "Gujarat", "Delhi"],
+        rebate: "₹10,000 per kW installed",
+        link: "https://www.tatapower.com/solar-rebates"
+      },
+      {
+        name: "Mahindra EV Fleet Financing",
+        provider: "Mahindra Finance",
+        sector: ["EV/Transport"],
+        fundingType: ["CSR Initiative", "Loan"],
+        stage: ["Scaling/Growth"],
+        states: ["All"],
+        interestRate: "8% (Special CSR Rate)",
+        link: "https://www.mahindrafinance.com/ev-fleet"
+      },
+      {
+        name: "Adani Green Energy Grants",
+        provider: "Adani CSR Foundation",
+        sector: ["Renewable Energy"],
+        fundingType: ["CSR Initiative", "Grant"],
+        states: ["Gujarat", "Rajasthan"],
+        link: "https://adanicsr.in/green-energy"
+      },
+      {
+        name: "Reliance Green Khushi (Waste Management)",
+        provider: "Reliance Industries",
+        sector: ["Waste Management"],
+        fundingType: ["CSR Initiative", "Grant"],
+        states: ["Maharashtra", "Gujarat"],
+        grant: "Up to ₹50 lakh",
+        link: "https://www.ril.com/green-khushi"
+      },
+      {
+        name: "Infosys Foundation Sustainable Tech Grants",
+        provider: "Infosys Foundation",
+        sector: ["Renewable Energy", "EV/Transport"],
+        fundingType: ["CSR Initiative"],
+        link: "https://www.infosys-foundation.com/sustainability-grants"
+      },
+      {
+        name: "Adani Green Hydrogen Innovation Fund",
+        provider: "Adani Group",
+        sector: ["Renewable Energy"],
+        fundingType: ["CSR Initiative", "Grant"],
+        grant: "Up to ₹2 crore",
+        link: "https://adanicsr.in/green-hydrogen"
+      },
+      {
+        name: "Fashion for Good Fund",
+        provider: "Fashion for Good",
+        sector: ["Sustainable Fashion"],
+        stage: ["Seed", "Series A"],
+        fundingType: ["Grant", "Equity"],
+        states: ["All"],
+        link: "https://fashionforgood.com"
+      },
+      {
+        name: "World Bank India Climate Solutions",
+        provider: "World Bank",
+        sector: ["Renewable Energy", "Agriculture"],
+        fundingType: ["Grant", "Loan"],
+        loanRate: "LIBOR + 2%",
+        link: "https://www.worldbank.org/en/country/india/climate"
+      },
+      {
+        name: "UNDP Biodiversity Fund",
+        provider: "United Nations Development Programme",
+        sector: ["Agriculture", "Forestry"],
+        fundingType: ["Grant"],
+        link: "https://www.in.undp.org/biodiversity-fund"
+      },
+      {
+        name: "Rajasthan Solar Park Policy",
+        provider: "Rajasthan Govt",
+        sector: ["Renewable Energy"],
+        fundingType: ["Subsidy", "Land Allocation"],
+        states: ["Rajasthan"],
+        link: "https://energy.rajasthan.gov.in/solar-policy"
+      },
+      {
+        name: "Telangana EV Mobility Fund",
+        provider: "Telangana Govt",
+        sector: ["EV/Transport"],
+        fundingType: ["Subsidy"],
+        states: ["Telangana"],
+        subsidy: "₹20,000 per vehicle",
+        link: "https://ev.telangana.gov.in"
+      },
+      {
+        name: "Goa Green Tourism Grants",
+        provider: "Goa Tourism Dept",
+        sector: ["Tourism", "Waste Management"],
+        fundingType: ["Grant"],
+        states: ["Goa"],
+        link: "https://goatourism.gov.in/green-tourism"
+      }
+    ];
+
+    // Render Questions
+    const container = document.getElementById("questionsContainer");
+    questions.forEach(q => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `
+        <label><strong>${q.text}</strong></label><br>
+        <select id="${q.id}" required>
+          ${q.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
+        </select>
+      `;
+      container.appendChild(div);
+    });
+
+    // Matching Logic
+    function matchSchemes(userInput) {
+      return schemes.filter(scheme => {
+        const matchesSector = Array.isArray(scheme.sector) && scheme.sector.includes(userInput.sector);
+        const matchesStage = !scheme.stage || (Array.isArray(scheme.stage) && scheme.stage.includes(userInput.stage));
+        const matchesFunding = Array.isArray(scheme.fundingType) && scheme.fundingType.includes(userInput.fundingType);
+        const matchesLocation = !scheme.states || (Array.isArray(scheme.states) && (scheme.states.includes("All") || scheme.states.includes(userInput.location)));
+        return matchesSector && matchesStage && matchesFunding && matchesLocation;
+      });
+    }
+
+    // Display Results
+    document.getElementById("surveyForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userInput = {
+        sector: document.getElementById("sector").value,
+        stage: document.getElementById("stage").value,
+        fundingType: document.getElementById("fundingType").value,
+        location: document.getElementById("location").value
+      };
+
+      const results = matchSchemes(userInput);
+      const resultsDiv = document.getElementById("results");
+      
+      resultsDiv.innerHTML = results.length ? 
+        results.map(scheme => `
+          <div class="scheme">
+            <h3>${scheme.name}</h3>
+            <p>Provider: ${scheme.provider}</p>
+            ${scheme.interestRate ? `<p>Interest Rate: ${scheme.interestRate}</p>` : ''}
+            ${scheme.rebate ? `<p>Rebate: ${scheme.rebate}</p>` : ''}
+            ${scheme.grant ? `<p>Grant: ${scheme.grant}</p>` : ''}
+            ${scheme.subsidy ? `<p>Subsidy: ${scheme.subsidy}</p>` : ''}
+            ${scheme.prize ? `<p>Prize: ${scheme.prize}</p>` : ''}
+            ${scheme.loanRate ? `<p>Loan Rate: ${scheme.loanRate}</p>` : ''}
+            <a href="${scheme.link}" target="_blank">View Details →</a>
+          </div>
+        `).join("") : 
+        "<p>No schemes found. Try broader filters!</p>";
+    });
+  </script>
+</body>
+</html>
